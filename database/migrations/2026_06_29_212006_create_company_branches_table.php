@@ -11,35 +11,37 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('company_branches', function (Blueprint $table) {
+
             $table->uuid('id')->primary();
 
-            $table->string('employee_number', 30)->nullable()->unique();
+            $table->foreignUuid('company_id')
+                ->constrained()
+                ->cascadeOnDelete();
 
-            $table->string('first_name');
-            $table->string('last_name');
+            $table->string('code', 30);
 
-            $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
+            $table->string('name');
+
+            $table->string('email')->nullable();
 
             $table->string('phone', 30)->nullable();
-            $table->string('avatar')->nullable();
 
-            $table->foreignUuid('language_id')
+            $table->foreignUuid('country_id')
                 ->nullable()
-                ->constrained('languages')
+                ->constrained()
                 ->nullOnDelete();
-
-            $table->string('password');
-
-            $table->timestamp('last_login_at')->nullable();
 
             $table->boolean('is_active')->default(true);
 
-            $table->rememberToken();
-
             $table->timestamps();
+
             $table->softDeletes();
+
+            $table->unique([
+                'company_id',
+                'code'
+            ]);
         });
     }
 
@@ -48,6 +50,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('user');
+        Schema::dropIfExists('company_branches');
     }
 };
