@@ -11,20 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('document_comments', function (Blueprint $table) {
+        Schema::create('purchase_receipts', function (Blueprint $table) {
 
             $table->uuid('id')->primary();
 
-            $table->foreignUuid('document_id')
-                ->constrained()
-                ->cascadeOnDelete();
+            $table->foreignUuid('document_id')->constrained()->cascadeOnDelete();
 
-            $table->foreignUuid('user_id')
-                ->nullable()
-                ->constrained()
-                ->nullOnDelete();
+            $table->foreignUuid('purchase_order_id')->constrained()->restrictOnDelete();
 
-            $table->text('comment');
+            $table->foreignUuid('warehouse_id')->constrained()->restrictOnDelete();
 
             $table->timestamps();
         });
@@ -35,6 +30,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('document_comments');
+        Schema::dropIfExists('purchase_receipts');
     }
 };
