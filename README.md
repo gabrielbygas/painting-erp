@@ -1,58 +1,218 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Painting ERP
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+> Modern ERP for the Paint Industry
 
-## About Laravel
+---
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+# Overview
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+**Painting ERP** is a modern Enterprise Resource Planning (ERP) application designed primarily for paint manufacturers, distributors, wholesalers and retailers.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+The application is built using modern technologies with a clean Domain-Driven architecture while keeping the standard Laravel project structure.
 
-## Learning Laravel
+The default language is **French**, with full **English** support.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+---
 
-In addition, [Laracasts](https://laracasts.com) contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+# Objectives
 
-You can also watch bite-sized lessons with real-world projects on [Laravel Learn](https://laravel.com/learn), where you will be guided through building a Laravel application from scratch while learning PHP fundamentals.
+* Inventory Management
+* Purchasing
+* Production
+* Sales
+* Finance
+* Customer Management
+* Supplier Management
+* Document Management
+* Reporting
+* Secure Administration
 
-## Agentic Development
+---
 
-Laravel's predictable structure and conventions make it ideal for AI coding agents like Claude Code, Cursor, and GitHub Copilot. Install [Laravel Boost](https://laravel.com/docs/ai) to supercharge your AI workflow:
+# Target Market
 
-```bash
-composer require laravel/boost --dev
+Current target:
 
-php artisan boost:install
+* Democratic Republic of the Congo 🇨🇩
+
+Future target:
+
+* Africa
+* International market
+
+---
+
+# Technology Stack
+
+| Technology        | Version |
+| ----------------- | ------- |
+| PHP               | 8.4+    |
+| Laravel           | 13      |
+| Vue.js            | 3       |
+| Tailwind CSS      | 4       |
+| MySQL             | 8       |
+| Vite              | Latest  |
+| Laravel Breeze    | Latest  |
+| Spatie Permission | Latest  |
+
+---
+
+# Architecture
+
+The project follows a **Domain-Driven ERP Architecture** while keeping the standard Laravel folder structure.
+
+```
+app/
+
+├── Http/
+│   ├── Controllers/
+│   ├── Requests/
+│   └── Resources/
+│
+├── Models/
+│
+└── Services/
 ```
 
-Boost provides your agent 15+ tools and skills that help agents build Laravel applications while following best practices.
+Business logic is implemented inside **Services**.
 
-## Contributing
+Controllers remain thin.
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+---
 
-## Code of Conduct
+# Project Structure
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+```
+Core
 
-## Security Vulnerabilities
+Administration
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+Settings
 
-## License
+Catalog
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+Customers
+
+Suppliers
+
+Inventory
+
+Documents
+
+Purchasing
+
+Production
+
+Sales
+
+Finance
+```
+
+---
+
+# Multilingual Strategy
+
+Default language
+
+* French
+
+Supported languages
+
+* English
+
+Database strategy
+
+```
+name_fr
+
+name_en
+```
+
+The application interface will use Laravel Localization.
+
+---
+
+# Database
+
+Database Engine
+
+* MySQL 8
+
+Primary Key
+
+* UUID
+
+Soft Deletes
+
+* Reference tables only
+
+Naming Convention
+
+* snake_case
+
+Plural table names
+
+Foreign Keys
+
+* foreignUuid()
+
+---
+
+# Security
+
+* Laravel Authentication
+* Authorization using Spatie Permission
+* Form Request Validation
+* CSRF Protection
+* SQL Injection Protection
+* XSS Protection
+* Mass Assignment Protection
+* Password Hashing
+* Audit Logs
+* User Sessions
+* Authorization Policies
+
+---
+
+# Development Rules
+
+* Follow Laravel Best Practices
+* Thin Controllers
+* Business Logic inside Services
+* Strict Validation
+* API Resources
+* No duplicated business logic
+* Clean code
+* SOLID Principles
+
+---
+
+# Development Roadmap
+
+* ✅ Business Analysis
+* ✅ Technical Architecture
+* ✅ MCD
+* ✅ MLD
+* 🔄 Laravel Migrations
+* ⏳ Models
+* ⏳ Relationships
+* ⏳ Factories
+* ⏳ Seeders
+* ⏳ Services
+* ⏳ Requests
+* ⏳ Policies
+* ⏳ API Resources
+* ⏳ Controllers
+* ⏳ Vue.js Interface
+* ⏳ Testing
+* ⏳ Deployment
+
+---
+
+# License
+
+Private Project
+
+Copyright © Gabriel Kalala
+
+All rights reserved.
