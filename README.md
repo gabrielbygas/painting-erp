@@ -1,65 +1,53 @@
 # Painting ERP
 
-> Modern ERP for the Paint Industry
+> Modern ERP for Paint Distribution & Sales Management
 
 ---
 
 # Overview
 
-**Painting ERP** is a modern Enterprise Resource Planning (ERP) application designed primarily for paint manufacturers, distributors, wholesalers and retailers.
+**Painting ERP** is a modern Enterprise Resource Planning (ERP) solution designed for companies that sell, distribute and manage paint products.
 
-The application is built using modern technologies with a clean Domain-Driven architecture while keeping the standard Laravel project structure.
+The application is designed with a Domain-Driven architecture while keeping the standard Laravel 13 structure.
 
-The default language is **French**, with full **English** support.
+Primary language: **French**
 
----
-
-# Objectives
-
-* Inventory Management
-* Purchasing
-* Production
-* Sales
-* Finance
-* Customer Management
-* Supplier Management
-* Document Management
-* Reporting
-* Secure Administration
+Secondary language: **English**
 
 ---
 
-# Target Market
+# Current Scope
 
-Current target:
+The ERP is dedicated to **paint product management**, **not paint manufacturing**.
 
-* Democratic Republic of the Congo 🇨🇩
+Supported businesses:
 
-Future target:
+- Paint Retailers
+- Paint Wholesalers
+- Paint Distributors
+- Hardware Stores
+- Construction Material Stores
 
-* Africa
-* International market
+Future versions may include Manufacturing.
 
 ---
 
 # Technology Stack
 
-| Technology        | Version |
-| ----------------- | ------- |
-| PHP               | 8.4+    |
-| Laravel           | 13      |
-| Vue.js            | 3       |
-| Tailwind CSS      | 4       |
-| MySQL             | 8       |
-| Vite              | Latest  |
-| Laravel Breeze    | Latest  |
-| Spatie Permission | Latest  |
+| Technology | Version |
+|------------|----------|
+| PHP | 8.4+ |
+| Laravel | 13 |
+| Vue.js | 3 |
+| Tailwind CSS | 4 |
+| MySQL | 8 |
+| Vite | Latest |
+| Laravel Breeze | Latest |
+| Spatie Permission | Latest |
 
 ---
 
 # Architecture
-
-The project follows a **Domain-Driven ERP Architecture** while keeping the standard Laravel folder structure.
 
 ```
 app/
@@ -80,7 +68,82 @@ Controllers remain thin.
 
 ---
 
-# Project Structure
+# Development Principles
+
+- Laravel Best Practices
+- Domain Driven ERP
+- Thin Controllers
+- Business Logic in Services
+- UUID Primary Keys
+- API Resources
+- Form Requests
+- Repository-free Architecture
+- SOLID
+- DRY
+- KISS
+- Clean Code
+
+---
+
+# Multilingual Strategy
+
+Default language
+
+- French
+
+Supported language
+
+- English
+
+Database fields
+
+```
+name_fr
+
+name_en
+```
+
+---
+
+# Database Standards
+
+Engine
+
+- MySQL 8
+
+Primary Keys
+
+- UUID
+
+Naming
+
+- snake_case
+
+Tables
+
+- plural
+
+Soft Deletes
+
+- Enabled where necessary
+
+---
+
+# Security
+
+- Authentication
+- Authorization (Spatie Permission)
+- CSRF Protection
+- XSS Protection
+- SQL Injection Protection
+- Password Hashing
+- Audit Logs
+- Policies
+- Validation via Form Requests
+
+---
+
+# Domains
 
 ```
 Core
@@ -88,6 +151,8 @@ Core
 Administration
 
 Settings
+
+Infrastructure
 
 Catalog
 
@@ -101,8 +166,6 @@ Documents
 
 Purchasing
 
-Production
-
 Sales
 
 Finance
@@ -110,102 +173,338 @@ Finance
 
 ---
 
-# Multilingual Strategy
+# Models Overview
 
-Default language
-
-* French
-
-Supported languages
-
-* English
-
-Database strategy
+## Core
 
 ```
-name_fr
-
-name_en
+Country
+Language
+Currency
+ExchangeRate
+TaxRate
+Unit
+PackagingType
+Color
+ProductType
+ProductCategory
+FinancialInstitution
+PaymentMethod
+AddressType
+JobTitle
 ```
 
-The application interface will use Laravel Localization.
+---
+
+## Administration
+
+```
+User
+Role
+Permission
+UserSession
+AuditLog
+Notification
+SystemSetting
+```
 
 ---
 
-# Database
+## Settings
 
-Database Engine
-
-* MySQL 8
-
-Primary Key
-
-* UUID
-
-Soft Deletes
-
-* Reference tables only
-
-Naming Convention
-
-* snake_case
-
-Plural table names
-
-Foreign Keys
-
-* foreignUuid()
+```
+Company
+CompanyBranch
+```
 
 ---
 
-# Security
+## Infrastructure
 
-* Laravel Authentication
-* Authorization using Spatie Permission
-* Form Request Validation
-* CSRF Protection
-* SQL Injection Protection
-* XSS Protection
-* Mass Assignment Protection
-* Password Hashing
-* Audit Logs
-* User Sessions
-* Authorization Policies
+```
+Warehouse
+```
 
 ---
 
-# Development Rules
+## Catalog
 
-* Follow Laravel Best Practices
-* Thin Controllers
-* Business Logic inside Services
-* Strict Validation
-* API Resources
-* No duplicated business logic
-* Clean code
-* SOLID Principles
+```
+Brand
+Product
+ProductVariant
+```
+
+---
+
+## Customers
+
+```
+Customer
+CustomerAddress
+CustomerContact
+CustomerBankAccount
+```
+
+---
+
+## Suppliers
+
+```
+Supplier
+SupplierAddress
+SupplierContact
+SupplierBankAccount
+```
+
+---
+
+## Inventory
+
+```
+Stock
+StockMovementType
+StockMovement
+StockCount
+StockCountItem
+StockAdjustment
+StockAdjustmentItem
+StockTransfer
+StockTransferItem
+```
+
+---
+
+## Documents
+
+```
+DocumentType
+DocumentStatus
+DocumentSequence
+Document
+DocumentAttachment
+DocumentComment
+```
+
+---
+
+## Purchasing
+
+```
+PurchaseRequest
+PurchaseRequestItem
+
+PurchaseOrder
+PurchaseOrderItem
+
+PurchaseReceipt
+PurchaseReceiptItem
+
+PurchaseReturn
+PurchaseReturnItem
+
+SupplierInvoice
+SupplierInvoiceItem
+```
+
+---
+
+## Sales
+
+```
+Quotation
+QuotationItem
+
+SalesOrder
+SalesOrderItem
+
+DeliveryNote
+DeliveryNoteItem
+
+CustomerInvoice
+CustomerInvoiceItem
+
+SalesReturn
+SalesReturnItem
+
+CustomerPayment
+```
+
+---
+
+## Finance
+
+```
+SupplierPayment
+
+CashAccount
+
+CashTransaction
+
+JournalEntry
+```
+
+---
+
+# Database Overview
+
+```
+Core
+│
+├── countries
+├── languages
+├── currencies
+├── exchange_rates
+├── tax_rates
+├── units
+├── packaging_types
+├── colors
+├── product_types
+├── product_categories
+├── financial_institutions
+├── payment_methods
+├── address_types
+└── job_titles
+
+Administration
+│
+├── users
+├── roles
+├── permissions
+├── model_has_roles
+├── model_has_permissions
+├── role_has_permissions
+├── user_sessions
+├── audit_logs
+├── notifications
+└── system_settings
+
+Settings
+│
+├── companies
+└── company_branches
+
+Infrastructure
+│
+└── warehouses
+
+Catalog
+│
+├── brands
+├── products
+└── product_variants
+
+Customers
+│
+├── customers
+├── customer_addresses
+├── customer_contacts
+└── customer_bank_accounts
+
+Suppliers
+│
+├── suppliers
+├── supplier_addresses
+├── supplier_contacts
+└── supplier_bank_accounts
+
+Inventory
+│
+├── stocks
+├── stock_movement_types
+├── stock_movements
+├── stock_counts
+├── stock_count_items
+├── stock_adjustments
+├── stock_adjustment_items
+├── stock_transfers
+└── stock_transfer_items
+
+Documents
+│
+├── document_types
+├── document_statuses
+├── document_sequences
+├── documents
+├── document_attachments
+└── document_comments
+
+Purchasing
+│
+├── purchase_requests
+├── purchase_request_items
+├── purchase_orders
+├── purchase_order_items
+├── purchase_receipts
+├── purchase_receipt_items
+├── purchase_returns
+├── purchase_return_items
+├── supplier_invoices
+└── supplier_invoice_items
+
+Sales
+│
+├── quotations
+├── quotation_items
+├── sales_orders
+├── sales_order_items
+├── delivery_notes
+├── delivery_note_items
+├── customer_invoices
+├── customer_invoice_items
+├── sales_returns
+├── sales_return_items
+└── customer_payments
+
+Finance
+│
+├── supplier_payments
+├── cash_accounts
+├── cash_transactions
+└── journal_entries
+```
 
 ---
 
 # Development Roadmap
 
-* ✅ Business Analysis
-* ✅ Technical Architecture
-* ✅ MCD
-* ✅ MLD
-* 🔄 Laravel Migrations
-* ⏳ Models
-* ⏳ Relationships
-* ⏳ Factories
-* ⏳ Seeders
-* ⏳ Services
-* ⏳ Requests
-* ⏳ Policies
-* ⏳ API Resources
-* ⏳ Controllers
-* ⏳ Vue.js Interface
-* ⏳ Testing
-* ⏳ Deployment
+- ✅ Business Analysis
+- ✅ Technical Architecture
+- ✅ MCD
+- ✅ MLD
+- ✅ Database Design
+- ✅ Laravel Migrations
+- ⏳ Models
+- ⏳ Relationships
+- ⏳ Factories
+- ⏳ Seeders
+- ⏳ Services
+- ⏳ Requests
+- ⏳ Policies
+- ⏳ API Resources
+- ⏳ Controllers
+- ⏳ Vue.js Pages
+- ⏳ Testing
+- ⏳ Deployment
+
+---
+
+# Project Status
+
+Current Progress
+
+```
+███████████████░░░░░░░░░░░░░░░░
+
+Architecture        ✅
+Database            ✅
+Migrations          ✅
+Models              ⏳
+Services            ⏳
+Frontend            ⏳
+Testing             ⏳
+Deployment          ⏳
+```
 
 ---
 
