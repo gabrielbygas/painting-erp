@@ -21,10 +21,6 @@ return new class extends Migration
 
             $table->string('description');
 
-            $table->decimal('debit', 18, 2)->default(0);
-
-            $table->decimal('credit', 18, 2)->default(0);
-
             $table->timestamps();
         });
     }

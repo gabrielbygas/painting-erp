@@ -11,19 +11,28 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('cash_accounts', function (Blueprint $table) {
+        Schema::create('financial_accounts', function (Blueprint $table) {
 
             $table->uuid('id')->primary();
 
             $table->string('code', 30)->unique();
 
-            $table->string('name');
+            $table->string('name_fr');
+
+            $table->string('name_en')->nullable();
+
+            $table->enum('type', [
+                'ASSET',
+                'LIABILITY',
+                'EQUITY',
+                'REVENUE',
+                'EXPENSE'
+            ]);
 
             $table->foreignUuid('currency_id')
+                ->nullable()
                 ->constrained()
-                ->restrictOnDelete();
-
-            $table->decimal('opening_balance', 18, 2)->default(0);
+                ->nullOnDelete();
 
             $table->boolean('is_active')->default(true);
 
@@ -38,6 +47,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('cash_accounts');
+        Schema::dropIfExists('financial_accounts');
     }
 };
