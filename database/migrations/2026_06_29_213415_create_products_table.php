@@ -32,9 +32,11 @@ return new class extends Migration
                 ->constrained()
                 ->restrictOnDelete();
 
-            $table->foreignUuid('bas_unit_id')
-                ->constrained()
-                ->restrictOnDelete();
+            $table->foreignUuid('unit_id')
+                ->nullable()
+                ->constrained('units')
+                ->nullOnDelete();
+
 
             $table->foreignUuid('packaging_type_id')
                 ->nullable()

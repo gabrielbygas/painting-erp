@@ -28,11 +28,10 @@ return new class extends Migration
 
             $table->timestamps();
 
-            $table->unique([
-                'source_currency_id',
-                'target_currency_id',
-                'effective_date'
-            ]);
+            $table->unique(
+                ['source_currency_id', 'target_currency_id', 'effective_date'],
+                'exchange_rate_unique'
+            );
         });
     }
 
